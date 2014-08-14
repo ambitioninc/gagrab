@@ -15,9 +15,27 @@
 gagrab
 ===============
 
+The official Google Analytics API is quite powerfull, and
+extensive. Sometimes though, you just want to grab some data and have
+it returned in a clean format.
 
-I have failed to provide a good README.rst in my project, and you should shun
-me if I do any pull requests
+.. code-block:: python
+
+    from service_account_auth import AuthorizedService
+    from gagrab import Grabber
+
+    my_ga_service = AuthorizedService('my-project-555', 'analytics', 'v3')
+    grabber = Grabber(my_ga_service)
+
+    data = grabber.query(
+        view='UA-000000-1',
+        metrics=['sessions', 'pageviews'],
+        dimensions=['browser', 'userAgeBracket']
+        start_date='2014-07-01',
+        end_date='2014-08-15',
+    )
+
+
 
 Installation
 ------------
