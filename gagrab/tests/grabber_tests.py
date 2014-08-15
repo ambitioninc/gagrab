@@ -1,6 +1,7 @@
 import unittest
 from datetime import datetime
 
+import six
 from mock import MagicMock
 
 from gagrab import Grabber, data_from_query_response
@@ -93,7 +94,7 @@ class Test_data_from_query_response(unittest.TestCase):
 
     def test_string_conversion(self):
         data = data_from_query_response(self.query_response)
-        self.assertIsInstance(data[0]['operatingSystem'], unicode)
+        self.assertIsInstance(data[0]['operatingSystem'], six.text_type)
 
     def test_integer_conversion(self):
         data = data_from_query_response(self.query_response)
