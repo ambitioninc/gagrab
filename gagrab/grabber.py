@@ -79,17 +79,19 @@ class Grabber(object):
     def _query_response(self, view, dimensions, metrics, start_date, end_date, **kwargs):
         """Get the raw data for a query.
         """
+        if isinstance(start_date, datetime):
+            start_date = datetime.strftime(start_date, '%Y-%m-%d')
+        if isinstance(end_date, datetime):
+            end_date = datetime.strftime(end_date, '%Y-%m-%d')
         formatted_view = 'ga:' + str(view)
         formatted_dimensions = ','.join(['ga:' + dim for dim in dimensions])
         formatted_metrics = ','.join(['ga:' + metric for metric in metrics])
-        formatted_start_date = datetime.strftime(start_date, '%Y-%m-%d')
-        formatted_end_date = datetime.strftime(end_date, '%Y-%m-%d')
         query_response = self.service.data().ga().get(
             ids=formatted_view,
             dimensions=formatted_dimensions,
             metrics=formatted_metrics,
-            start_date=formatted_start_date,
-            end_date=formatted_end_date,
+            start_date=start_date,
+            end_date=end_date,
             **kwargs
         ).execute()
         return query_response

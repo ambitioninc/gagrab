@@ -33,6 +33,25 @@ class Test_Grabber_query(unittest.TestCase):
             view=555,
             dimensions=['dimension1'],
             metrics=['pageviews', 'othermetric'],
+            start_date='2012-01-01',
+            end_date='2014-01-01',
+        )
+        ga_get_mock.assert_called_with(
+            ids='ga:555',
+            dimensions='ga:dimension1',
+            metrics='ga:pageviews,ga:othermetric',
+            start_date='2012-01-01',
+            end_date='2014-01-01'
+        )
+
+    def test_start_end_date_conversion(self):
+        ga_get_mock = MagicMock()
+        ga_get_mock.return_value.execute.return_value = self.response
+        self.core.service.data.return_value.ga.return_value.get = ga_get_mock
+        self.core.query(
+            view=555,
+            dimensions=['dimension1'],
+            metrics=['pageviews', 'othermetric'],
             start_date=datetime(2012, 1, 1),
             end_date=datetime(2014, 1, 1),
         )
