@@ -20,7 +20,7 @@ def get_version():
 setup(
     name='gagrab',
     version=get_version(),
-    description='',
+    description='When want to grab your data from Google Analytics: gagrab it.',
     long_description=open('README.rst').read(),
     url='https://github.com/ambitioninc/gagrab',
     author='Erik Swanson',
@@ -36,7 +36,9 @@ setup(
         'Operating System :: OS Independent',
     ],
     license='MIT',
-    install_requires=[],
+    install_requires=[
+        'six',
+    ],
     include_package_data=True,
     test_suite='nose.collector',
     tests_require=[
