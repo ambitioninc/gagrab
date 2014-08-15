@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 #
 # gagrab documentation build configuration file
-
 import os
 import re
+
+import sys
+sys.path.insert(0, os.path.abspath('..'))
 
 
 def get_version():
