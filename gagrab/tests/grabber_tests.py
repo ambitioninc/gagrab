@@ -43,6 +43,7 @@ class Test_Grabber_query(unittest.TestCase):
             end_date='2014-01-01'
         )
 
+
 class Test_data_from_query_response(unittest.TestCase):
     def setUp(self):
         """Have a sample query response with each datatype that we may be

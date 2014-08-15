@@ -2,13 +2,14 @@ from datetime import datetime
 
 from six.moves import zip
 
+
 class Grabber(object):
     def __init__(self, authorized_service):
         """A ``Grabber`` object stores authetication information, and provides
         a convenient interface to query data from google analytics.
-        
+
         :type authroized_service: service_account_auth.AuthorizedService
-        :param authorized_service: An AuthorizedService object, 
+        :param authorized_service: An AuthorizedService object,
              authorized for the 'analytics' service, version 'v3'.
         """
         self.project_id = authorized_service.project_id
