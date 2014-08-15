@@ -1,6 +1,12 @@
 Release Notes
 =============
 
+v0.2.0
+------
+
+* Automatic DePaging of results from ``gagrab.Grabber.query``.
+
+
 v0.1
 ----
 
