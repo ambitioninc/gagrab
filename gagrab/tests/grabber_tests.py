@@ -32,8 +32,8 @@ class Test_Grabber_query(unittest.TestCase):
             view=555,
             dimensions=['dimension1'],
             metrics=['pageviews', 'othermetric'],
-            start_date=datetime(2012, 01, 01),
-            end_date=datetime(2014, 01, 01),
+            start_date=datetime(2012, 1, 1),
+            end_date=datetime(2014, 1, 1),
         )
         ga_get_mock.assert_called_with(
             ids='ga:555',
