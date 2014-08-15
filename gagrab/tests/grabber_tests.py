@@ -1,4 +1,5 @@
 import unittest
+from copy import deepcopy
 from datetime import datetime
 
 import six
@@ -18,6 +19,7 @@ class Test_Grabber_query(unittest.TestCase):
     def setUp(self):
         self.core = Grabber(authorized_service=MagicMock())
         self.response = {
+            u'itemsPerPage': 5,
             u'columnHeaders': [
                 {u'columnType': u'DIMENSION', u'dataType': u'STRING', u'name': u'ga:dimension1'},
                 {u'columnType': u'METRIC', u'dataType': u'INTEGER', u'name': u'ga:pageviews'}],
@@ -62,6 +64,21 @@ class Test_Grabber_query(unittest.TestCase):
             start_date='2012-01-01',
             end_date='2014-01-01'
         )
+
+    def test_depages_results(self):
+        response2 = deepcopy(self.response)
+        self.response['nextLink'] = 'a link'
+        ga_get_mock = MagicMock()
+        ga_get_mock.return_value.execute.side_effect = [self.response, response2]
+        self.core.service.data.return_value.ga.return_value.get = ga_get_mock
+        res = self.core.query(
+            view=555,
+            dimensions=['dimension1'],
+            metrics=['pageviews', 'othermetric'],
+            start_date=datetime(2012, 1, 1),
+            end_date=datetime(2014, 1, 1),
+        )
+        self.assertEqual(len(res), 10)
 
 
 class Test_data_from_query_response(unittest.TestCase):

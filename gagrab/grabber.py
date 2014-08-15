@@ -74,6 +74,13 @@ class Grabber(object):
             view, dimensions, metrics, start_date, end_date, **kwargs
         )
         data = data_from_query_response(query_response)
+        next_index = query_response['itemsPerPage'] + 1
+        while query_response.get('nextLink'):
+            query_response = self._query_response(
+                view, dimensions, metrics, start_date, end_date, start_index=next_index, **kwargs
+            )
+            data += data_from_query_response(query_response)
+            next_index += query_response['itemsPerPage']
         return data
 
     def _query_response(self, view, dimensions, metrics, start_date, end_date, **kwargs):
