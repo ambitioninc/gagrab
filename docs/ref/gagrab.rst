@@ -6,8 +6,7 @@ Code documentation
 gagrab
 ------------------
 
-.. automodule:: gagrab
-.. autoclass:: gagrab.gagrab
-    :members:
+.. autoclass:: gagrab.Grabber
+   :members:
 
-    .. automethod:: __init__
+.. autofunction:: gagrab.data_from_query_response

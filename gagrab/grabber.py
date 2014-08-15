@@ -7,10 +7,11 @@ class Grabber(object):
     """A ``Grabber`` object stores authetication information, and provides
     a convenient interface to query data from google analytics.
 
-    An authorized_service must be set up first, according to the steps
-    shown in the `gclient-service-account-auth
-    <https://github.com/ambitioninc/gclient-service-account-auth>`
+    An ``authorized_service`` object must be set up first, according
+    to the steps shown in the `gclient-service-account-auth
+    <https://github.com/ambitioninc/gclient-service-account-auth>`_
     docs.
+
     """
     def __init__(self, authorized_service):
         self.project_id = authorized_service.project_id
@@ -28,16 +29,14 @@ class Grabber(object):
             "UA-00000-1"
 
         :param dimensions: A list of dimensions to aggregate
-            on. E.g. ['operatingSystem', 'dimension1']
+            on. E.g. ``['operatingSystem', 'dimension1']``
 
-        :param metrics: - a list of the names ometrics to be included in
-            the query. E.g. ['pageviews', 'timeOnPage']
+        :param metrics: A list of the names ometrics to be included in
+            the query. E.g. ``['pageviews', 'timeOnPage']``
 
-        :param start_date: - a date for the start of the query.
+        :param start_date: A date for the start of the query.
 
-        :param end_date: - a date for the end of the query.
-
-        **kwargs:
+        :param end_date: A date for the end of the query.
 
         Any additional query parameter can be passed in to the keyword
         arguments of this this function, and will be passed along to
@@ -100,9 +99,8 @@ def data_from_query_response(query_response):
     """Format a GA query response to a list of dicts.
 
     :type query_response: dict
-
     :param query_response: The raw response returned by the google
-    analytics api.
+        analytics api.
 
     The structure returned by the google analytics api contains a lot
     of superfluous data, most of which is not in native python

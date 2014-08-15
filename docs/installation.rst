@@ -17,4 +17,4 @@ The ``gagrab.Grabber`` object requires a
 ``service_account_auth.AuthorizedService`` object during
 initialization. Installation and setup instructions for
 gclient-service-account-auth can be found on the github page
-`https://github.com/ambitioninc/gclient-service-account-auth`.
+`<https://github.com/ambitioninc/gclient-service-account-auth>`_.
